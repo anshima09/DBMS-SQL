@@ -1,0 +1,184 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| mtech              |
+| mysql              |
+| performance_schema |
+| practice           |
+| student            |
+| test               |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> create database Employee;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use Employee;
+Database changed
+mysql> create table Location (Location_ID int primary key not null,Regional_group varchar(10));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into Location values(122,'NEW YORK'),(123,'DALLAS'),(124,'CHICAGO'),(125,'BOSTON');
+Query OK, 4 rows affected (0.08 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Location;
++-------------+----------------+
+| Location_ID | Regional_group |
++-------------+----------------+
+|         122 | NEW YORK       |
+|         123 | DALLAS         |
+|         124 | CHICAGO        |
+|         125 | BOSTON         |
++-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20),Location_ID int foreign key references Location(Location_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references Location(Location_ID))' at line 1
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20),Location_ID, int foreign key references Location(Location_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' int foreign key references Location(Location_ID))' at line 1
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20),Location_ID int foreign key references Location(Location_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references Location(Location_ID))' at line 1
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20),Location_ID int foreign key references Location(Location_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references Location(Location_ID))' at line 1
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20) not null,Location_ID int foreign key(Location_ID) references Location(Location_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(Location_ID) references Location(Location_ID))' at line 1
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20) not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20) not null,Location_ID int, foreign key(Location_ID) references Location(Location_ID));
+ERROR 1050 (42S01): Table 'department' already exists
+mysql> drop Department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Department' at line 1
+mysql> drop table Department;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table Department (Department_ID int primary key not null,Name varchar(20) not null,Location_ID int, foreign key(Location_ID) references Location(Location_ID));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> insert into Department values(10,'ACCOUNTING'),(20,'RESEARCH'),(30,'SALES'),(40,'OPERATIONS');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Department values(10,'ACCOUNTING',122),(20,'RESEARCH',123),(30,'SALES',124),(40,'OPERATIONS',125);
+Query OK, 4 rows affected (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Department;
++---------------+------------+-------------+
+| Department_ID | Name       | Location_ID |
++---------------+------------+-------------+
+|            10 | ACCOUNTING |         122 |
+|            20 | RESEARCH   |         123 |
+|            30 | SALES      |         124 |
+|            40 | OPERATIONS |         125 |
++---------------+------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> create table Job (Job_ID int primary key not null,Function varchar(20) not null);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> insert into Job values (667,'CLERK'),(668,'STAFF'),(669,'ANALYST'),(670,'SALESPERSON'),(671,'MANAGER'),(672,'PRESIDENT');
+Query OK, 6 rows affected (0.06 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from Job;
++--------+-------------+
+| Job_ID | Function    |
++--------+-------------+
+|    667 | CLERK       |
+|    668 | STAFF       |
+|    669 | ANALYST     |
+|    670 | SALESPERSON |
+|    671 | MANAGER     |
+|    672 | PRESIDENT   |
++--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10 not null,MIDDLE_NAME varchar(10),MANAGER_ID int not null,SALARY int not null,COMM int,HIREDATE date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null,MIDDLE_NAME varchar(10),MANAGER_ID int not null,SALARY int not null,COM' at line 1
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10 not null,MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null,MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE dat' at line 1
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10,MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date)' at line 1
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10),MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> alter table Employee add foreign key (Location_ID) references Location(Location_ID);
+ERROR 1072 (42000): Key column 'Location_ID' doesn't exist in table
+mysql> alter table Employee add Location_ID int, foreign key (Location_ID) references Location(Location_ID);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key (Location_ID) references Location(Location_ID)' at line 1
+mysql> alter table Employee add foreign key (Location_ID) references Location(Location_ID);
+ERROR 1072 (42000): Key column 'Location_ID' doesn't exist in table
+mysql> drop table Employee1;
+ERROR 1051 (42S02): Unknown table 'employee1'
+mysql> drop table Employee;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10),MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date,Location_ID int,foreign key (Location_ID references Location(Location_ID),Department_ID int,foreign key (Department_ID) references Department(Department_ID),Job_ID int,foreign key (Job_ID) references Job(Job_ID));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references Location(Location_ID),Department_ID int,foreign key (Department_ID) r' at line 1
+mysql> create table Employee (EMPLOYEE_ID int primary key not null,LAST_NAME varchar(10) not null,FIRST_NAME varchar(10),MIDDLE_NAME varchar(10),MANAGER_ID int,SALARY int,COMM int,HIREDATE date,Location_ID int,foreign key (Location_ID) references Location(Location_ID),Department_ID int,foreign key (Department_ID) references Department(Department_ID),Job_ID int,foreign key (Job_ID) references Job(Job_ID));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert into Employee values (7369,'SHARMA','ANSHIMA','Q',7902,800,NULL,'17-DEC-84',122,10,667);
+ERROR 1292 (22007): Incorrect date value: '17-DEC-84' for column 'HIREDATE' at row 1
+mysql> insert into Employee values (7369,'SHARMA','ANSHIMA','Q',7902,800,NULL,17-12-84,122,10,667);
+ERROR 1292 (22007): Incorrect date value: '-79' for column 'HIREDATE' at row 1
+mysql> insert into Employee values (7369,'SHARMA','ANSHIMA','Q',7902,800,NULL,17-12-79,122,10,667);
+ERROR 1292 (22007): Incorrect date value: '-74' for column 'HIREDATE' at row 1
+mysql> insert into Employee values (7369,'SHARMA','ANSHIMA','Q',7902,800,NULL,'17-12-79',122,10,667);
+ERROR 1292 (22007): Incorrect date value: '17-12-79' for column 'HIREDATE' at row 1
+mysql> alter table Employee alter column HIREDATE varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(20)' at line 1
+mysql> alter table Employee modify column HIREDATE varchar(20);
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into Employee values (7369,'SHARMA','ANSHIMA','Q',7902,800,NULL,'17-DEC-79',122,10,667);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Employee values (7499,'SHARMA','ABHISHEK','J',7698,1600,300,'20-FEB-80',123,20,668);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Employee values (7505,'RUNIJA','MAYANK','K',7839,2850,NULL,'04-APRIL-80',124,30,669);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Employee values (7505,'SHARMA','KANIKA','S',7839,2750,NULL,'15-MAY-80',125,40,670);
+ERROR 1062 (23000): Duplicate entry '7505' for key 'PRIMARY'
+mysql> insert into Employee values (7506,'SHARMA','KANIKA','S',7839,2750,NULL,'15-MAY-80',125,40,670);
+Query OK, 1 row affected (0.30 sec)
+
+mysql> insert into Employee values (7507,'MISHRA','MAHIMA','D',7839,2200,NULL,'10-JUNE-80',122,20,671);
+Query OK, 1 row affected (0.28 sec)
+
+mysql> insert into Employee values (7521,'JOSHI','GARIMA','D',7698,1250,500,'22-FEB-80',125,10,672);
+Query OK, 1 row affected (0.30 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1600 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql>
