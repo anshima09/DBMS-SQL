@@ -1,0 +1,385 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database practice;
+Query OK, 1 row affected (0.04 sec)
+
+mysql> create table practice (rn int , name varchar(15));
+ERROR 1046 (3D000): No database selected
+mysql> use practice;
+Database changed
+mysql> create table practice (rn int , name varchar(15));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> alter table practice add primary key(rn);
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into practice values (1,'Anshima');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into practice values (2,'Mahima');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into practice values (3,'Garima');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into practice values (4,'Rahul');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into practice values (5,'Kanika');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into practice values (6,'Abhishek');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into practice values (7,'Maynk');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from practice
+    -> select * from practice;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from practice' at line 2
+mysql> select * from practice;
++----+----------+
+| rn | name     |
++----+----------+
+|  1 | Anshima  |
+|  2 | Mahima   |
+|  3 | Garima   |
+|  4 | Rahul    |
+|  5 | Kanika   |
+|  6 | Abhishek |
+|  7 | Maynk    |
++----+----------+
+7 rows in set (0.00 sec)
+
+mysql> craete table practice2 (rn2 int, name varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'craete table practice2 (rn2 int, name varchar(50))' at line 1
+mysql> create table practice2 (rn2 int, name varchar(50));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> select * from practice order by rn;
++----+----------+
+| rn | name     |
++----+----------+
+|  1 | Anshima  |
+|  2 | Mahima   |
+|  3 | Garima   |
+|  4 | Rahul    |
+|  5 | Kanika   |
+|  6 | Abhishek |
+|  7 | Maynk    |
++----+----------+
+7 rows in set (0.00 sec)
+
+mysql> select * from practice order by rn asc;
++----+----------+
+| rn | name     |
++----+----------+
+|  1 | Anshima  |
+|  2 | Mahima   |
+|  3 | Garima   |
+|  4 | Rahul    |
+|  5 | Kanika   |
+|  6 | Abhishek |
+|  7 | Maynk    |
++----+----------+
+7 rows in set (0.00 sec)
+
+mysql> select * from practice order by rn desc;
++----+----------+
+| rn | name     |
++----+----------+
+|  7 | Maynk    |
+|  6 | Abhishek |
+|  5 | Kanika   |
+|  4 | Rahul    |
+|  3 | Garima   |
+|  2 | Mahima   |
+|  1 | Anshima  |
++----+----------+
+7 rows in set (0.00 sec)
+
+mysql> insert into practice2 values(11,'Aditya') (12,'kashish') (13,'Purnima') (14,'Anushka') (15,'Era');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(12,'kashish') (13,'Purnima') (14,'Anushka') (15,'Era')' at line 1
+mysql> insert into practice2 values (11,'Aditya') (12,'kashish') (13,'Purnima') (14,'Anushka') (15,'Era');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(12,'kashish') (13,'Purnima') (14,'Anushka') (15,'Era')' at line 1
+mysql> insert into practice2 values (11,'Aditya'), (12,'kashish'), (13,'Purnima') ,(14,'Anushka'), (15,'Era');
+Query OK, 5 rows affected (0.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from practice2;
++------+---------+
+| rn2  | name    |
++------+---------+
+|   11 | Aditya  |
+|   12 | kashish |
+|   13 | Purnima |
+|   14 | Anushka |
+|   15 | Era     |
++------+---------+
+5 rows in set (0.00 sec)
+
+mysql> insert into practice2 values (16,'Ansm');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into practice2 values (17,'mynkuyy');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into practice2 values (17,'mynkuyy');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> delete practice2 where rn2=17;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where rn2=17' at line 1
+mysql> delete table practice2 where rn2=17;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice2 where rn2=17' at line 1
+mysql> update table practice2 set rn2=18,name='Anshika' where rn=17;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice2 set rn2=18,name='Anshika' where rn=17' at line 1
+mysql> update table practice2 set rn2=18, name='Anshika' where rn=17;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice2 set rn2=18, name='Anshika' where rn=17' at line 1
+mysql> update table practice2 set rn2=18 where rn=17;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice2 set rn2=18 where rn=17' at line 1
+mysql> select * from practice2;
++------+---------+
+| rn2  | name    |
++------+---------+
+|   11 | Aditya  |
+|   12 | kashish |
+|   13 | Purnima |
+|   14 | Anushka |
+|   15 | Era     |
+|   16 | Ansm    |
+|   17 | mynkuyy |
+|   17 | mynkuyy |
++------+---------+
+8 rows in set (0.00 sec)
+
+mysql> delete from practice2 where rn2=17;
+Query OK, 2 rows affected (0.09 sec)
+
+mysql> select * from practice2;
++------+---------+
+| rn2  | name    |
++------+---------+
+|   11 | Aditya  |
+|   12 | kashish |
+|   13 | Purnima |
+|   14 | Anushka |
+|   15 | Era     |
+|   16 | Ansm    |
++------+---------+
+6 rows in set (0.00 sec)
+
+mysql> insert into practice2 values (17,'monkey');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from practice2;
++------+---------+
+| rn2  | name    |
++------+---------+
+|   11 | Aditya  |
+|   12 | kashish |
+|   13 | Purnima |
+|   14 | Anushka |
+|   15 | Era     |
+|   16 | Ansm    |
+|   17 | monkey  |
++------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select rn2 from practice2 limit by 15;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by 15' at line 1
+mysql> select rn2 from practice2 limit 15;
++------+
+| rn2  |
++------+
+|   11 |
+|   12 |
+|   13 |
+|   14 |
+|   15 |
+|   16 |
+|   17 |
++------+
+7 rows in set (0.00 sec)
+
+mysql> select rn2 from practice limit 3;
+ERROR 1054 (42S22): Unknown column 'rn2' in 'field list'
+mysql> select rn from practice limit 3;
++----+
+| rn |
++----+
+|  1 |
+|  2 |
+|  3 |
++----+
+3 rows in set (0.00 sec)
+
+mysql> select rn from practice top 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '5' at line 1
+mysql> update table practice set city='Indore' where rn=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice set city='Indore' where rn=1' at line 1
+mysql> update table practice set city='Indore' where rn=1
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice set city='Indore' where rn=1' at line 1
+mysql> alter table practice add city varchar(20);
+Query OK, 7 rows affected (0.21 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from practice;
++----+----------+------+
+| rn | name     | city |
++----+----------+------+
+|  1 | Anshima  | NULL |
+|  2 | Mahima   | NULL |
+|  3 | Garima   | NULL |
+|  4 | Rahul    | NULL |
+|  5 | Kanika   | NULL |
+|  6 | Abhishek | NULL |
+|  7 | Maynk    | NULL |
++----+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update table practice set city='Indore' where rn=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table practice set city='Indore' where rn=1' at line 1
+mysql> update practice set city='Indore' where rn=1;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Dewas' where rn=2;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Mumbai' where rn=3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Dhar' where rn=4;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Bhopal' where rn=5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Kashmir' where rn=6;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set city='Goa' where rn=7;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from practice;
++----+----------+---------+
+| rn | name     | city    |
++----+----------+---------+
+|  1 | Anshima  | Indore  |
+|  2 | Mahima   | Dewas   |
+|  3 | Garima   | Mumbai  |
+|  4 | Rahul    | Dhar    |
+|  5 | Kanika   | Bhopal  |
+|  6 | Abhishek | Kashmir |
+|  7 | Maynk    | Goa     |
++----+----------+---------+
+7 rows in set (0.00 sec)
+
+mysql> alter table practice add salary int;
+Query OK, 7 rows affected (0.20 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> update practice set salary=5000 where rn=1;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=5500 where rn=2;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=6500 where rn=3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=7000 where rn=4;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=7500 where rn=5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=8000 where rn=6;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update practice set salary=4000 where rn=7;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from practice;
++----+----------+---------+--------+
+| rn | name     | city    | salary |
++----+----------+---------+--------+
+|  1 | Anshima  | Indore  |   5000 |
+|  2 | Mahima   | Dewas   |   5500 |
+|  3 | Garima   | Mumbai  |   6500 |
+|  4 | Rahul    | Dhar    |   7000 |
+|  5 | Kanika   | Bhopal  |   7500 |
+|  6 | Abhishek | Kashmir |   8000 |
+|  7 | Maynk    | Goa     |   4000 |
++----+----------+---------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select ,min(salary) from practice;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'min(salary) from practice' at line 1
+mysql> select * ,min(salary) from practice;
++----+---------+--------+--------+-------------+
+| rn | name    | city   | salary | min(salary) |
++----+---------+--------+--------+-------------+
+|  1 | Anshima | Indore |   5000 |        4000 |
++----+---------+--------+--------+-------------+
+1 row in set (0.05 sec)
+
+mysql> select * ,max(salary) from practice;
++----+---------+--------+--------+-------------+
+| rn | name    | city   | salary | max(salary) |
++----+---------+--------+--------+-------------+
+|  1 | Anshima | Indore |   5000 |        8000 |
++----+---------+--------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * ,min(salary) from practice;
++----+---------+--------+--------+-------------+
+| rn | name    | city   | salary | min(salary) |
++----+---------+--------+--------+-------------+
+|  1 | Anshima | Indore |   5000 |        4000 |
++----+---------+--------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from practice where salary=(select min(salary) from practice);
++----+-------+------+--------+
+| rn | name  | city | salary |
++----+-------+------+--------+
+|  7 | Maynk | Goa  |   4000 |
++----+-------+------+--------+
+1 row in set (0.05 sec)
+
+mysql> select * from practice where salary=(select max(salary) from practice);
++----+----------+---------+--------+
+| rn | name     | city    | salary |
++----+----------+---------+--------+
+|  6 | Abhishek | Kashmir |   8000 |
++----+----------+---------+--------+
+1 row in set (0.00 sec)
+
+mysql>
