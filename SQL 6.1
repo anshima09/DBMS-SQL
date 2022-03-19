@@ -1,0 +1,183 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| employee           |
+| mtech              |
+| mysql              |
+| performance_schema |
+| practice           |
+| rishika1           |
+| student            |
+| test               |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> use rishika1;
+Database changed
+mysql> create table Empl1(eno int primary key not null,ename varchar(10) not null,job varchar(10),mgr int ,hiredate date,sal int,comm int,deptno int);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into Empl1 values (8369,'Smith','Clerk',8902,'1990-12-18',800,NULL,20);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Empl1 values (8499,'Anya','Salesman',8698,'1991-02-20',1600,300,30);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Empl1 values (8521,'Seth','Salesman',8698,'1991-02-22',1250,500,30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Empl1 values (8566,'Mahadevan','Manager',8839,'1991-04-02',2985,NULL,20);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Empl1 values (8654,'Momin','Salesman',8698,'1991-09-28',1250,1400,30);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Empl1 values (8698,'Bina','Manager',8839,'1991-05-01',2850,NULL,30);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into Empl1 values (8882,'Shivansh','Manager',8839,'1991-06-09',2450,NULL,20);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Empl1 values (8888,'Scott','Analayst',8839,'1991-12-09',3000,NULL,20);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Empl1 values (8888,'Scott','President',NULL,'1991-11-18',5000,NULL,10);
+ERROR 1062 (23000): Duplicate entry '8888' for key 'PRIMARY'
+mysql> insert into Empl1 values (8839,'Amir','President',NULL,'1991-11-18',5000,NULL,10);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Empl1 values (8844,'Kuldeep','Salesman',8698,'1991-09-08',1500,0,30);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Empl1;
++------+-----------+-----------+------+------------+------+------+--------+
+| eno  | ename     | job       | mgr  | hiredate   | sal  | comm | deptno |
++------+-----------+-----------+------+------------+------+------+--------+
+| 8369 | Smith     | Clerk     | 8902 | 1990-12-18 |  800 | NULL |     20 |
+| 8499 | Anya      | Salesman  | 8698 | 1991-02-20 | 1600 |  300 |     30 |
+| 8521 | Seth      | Salesman  | 8698 | 1991-02-22 | 1250 |  500 |     30 |
+| 8566 | Mahadevan | Manager   | 8839 | 1991-04-02 | 2985 | NULL |     20 |
+| 8654 | Momin     | Salesman  | 8698 | 1991-09-28 | 1250 | 1400 |     30 |
+| 8698 | Bina      | Manager   | 8839 | 1991-05-01 | 2850 | NULL |     30 |
+| 8839 | Amir      | President | NULL | 1991-11-18 | 5000 | NULL |     10 |
+| 8844 | Kuldeep   | Salesman  | 8698 | 1991-09-08 | 1500 |    0 |     30 |
+| 8882 | Shivansh  | Manager   | 8839 | 1991-06-09 | 2450 | NULL |     20 |
+| 8888 | Scott     | Analayst  | 8839 | 1991-12-09 | 3000 | NULL |     20 |
++------+-----------+-----------+------+------------+------+------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select ename,sal from Empl1;
++-----------+------+
+| ename     | sal  |
++-----------+------+
+| Smith     |  800 |
+| Anya      | 1600 |
+| Seth      | 1250 |
+| Mahadevan | 2985 |
+| Momin     | 1250 |
+| Bina      | 2850 |
+| Amir      | 5000 |
+| Kuldeep   | 1500 |
+| Shivansh  | 2450 |
+| Scott     | 3000 |
++-----------+------+
+10 rows in set (0.00 sec)
+
+mysql> select ename,sal from Empl1 where sal>=2200;
++-----------+------+
+| ename     | sal  |
++-----------+------+
+| Mahadevan | 2985 |
+| Bina      | 2850 |
+| Amir      | 5000 |
+| Shivansh  | 2450 |
+| Scott     | 3000 |
++-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Empl1 where comm is NULL;
++------+-----------+-----------+------+------------+------+------+--------+
+| eno  | ename     | job       | mgr  | hiredate   | sal  | comm | deptno |
++------+-----------+-----------+------+------------+------+------+--------+
+| 8369 | Smith     | Clerk     | 8902 | 1990-12-18 |  800 | NULL |     20 |
+| 8566 | Mahadevan | Manager   | 8839 | 1991-04-02 | 2985 | NULL |     20 |
+| 8698 | Bina      | Manager   | 8839 | 1991-05-01 | 2850 | NULL |     30 |
+| 8839 | Amir      | President | NULL | 1991-11-18 | 5000 | NULL |     10 |
+| 8882 | Shivansh  | Manager   | 8839 | 1991-06-09 | 2450 | NULL |     20 |
+| 8888 | Scott     | Analayst  | 8839 | 1991-12-09 | 3000 | NULL |     20 |
++------+-----------+-----------+------+------------+------+------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select ename,sal from Empol1 where sal not between 2500 and 4000;
+ERROR 1146 (42S02): Table 'rishika1.empol1' doesn't exist
+mysql> select ename,sal from Empl1 where sal not between 2500 and 4000;
++----------+------+
+| ename    | sal  |
++----------+------+
+| Smith    |  800 |
+| Anya     | 1600 |
+| Seth     | 1250 |
+| Momin    | 1250 |
+| Amir     | 5000 |
+| Kuldeep  | 1500 |
+| Shivansh | 2450 |
++----------+------+
+7 rows in set (0.00 sec)
+
+mysql> select ename,job,sal from Empl1 where mgr is NULL;
++-------+-----------+------+
+| ename | job       | sal  |
++-------+-----------+------+
+| Amir  | President | 5000 |
++-------+-----------+------+
+1 row in set (0.00 sec)
+
+mysql> select ename from Empl1 where ename like '__a%';
+Empty set (0.00 sec)
+
+mysql> select ename from Empl1 where ename like '__i%';
++----------+
+| ename    |
++----------+
+| Smith    |
+| Amir     |
+| Shivansh |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> select ename from Empl1 where ename like '%t';
++-------+
+| ename |
++-------+
+| Scott |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select ename from Empl1 where ename like 'm_l%';
+Empty set (0.00 sec)
+
+mysql> select ename from Empl1 where ename like 'a_i%';
++-------+
+| ename |
++-------+
+| Amir  |
++-------+
+1 row in set (0.00 sec)
+
+mysql> 
