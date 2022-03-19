@@ -1,0 +1,634 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mtech              |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+5 rows in set (0.13 sec)
+
+mysql> create database student;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student_table(rno int primary key, name varchar(50), sem int,batch varchar, marks int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' marks int)' at line 1
+mysql> create table student_table (rno int primary key, name varchar(50), sem int,batch char, marks int);
+Query OK, 0 rows affected (0.27 sec)
+
+mysql> desc student_table;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| rno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(50) | YES  |     | NULL    |       |
+| sem   | int(11)     | YES  |     | NULL    |       |
+| batch | char(1)     | YES  |     | NULL    |       |
+| marks | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.11 sec)
+
+mysql> insert into student_table values(1,'Anshima',4,'A',98);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into student_table values(2,'Kanika',4,'B',95);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into student_table values(3,'Mayank',4,'A',94) (4,'Abhishek',4,'A',96) (5,'Priyank',4,'B',98);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(4,'Abhishek',4,'A',96) (5,'Priyank',4,'B',98)' at line 1
+mysql> insert into student_table values(3,'Mayank',4,'A',94), (4,'Abhishek',4,'A',96), (5,'Priyank',4,'B',98);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_table values(6,'Anushka',4,'A',84), (7,'Era',4,'B',86), (8,'Palak',4,'A',95);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_table values(9,'Kashish',4,'A',75), (10,'Purnima',4,'A',76), (11,'Anusha',4,'B',65);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_table values(12,'Rahul',4,'A',85), (13,'Mahima',4,'B',86), (14,'Garima',4,'A',55);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_table values(15,'Akshat',4,'B',95);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    4 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+15 rows in set (0.06 sec)
+
+mysql> insert into student_table(rno,name,batch,marks) values(16,'Bobby','B',97);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    4 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
+|  16 | Bobby    | NULL | B     |    97 |
++-----+----------+------+-------+-------+
+16 rows in set (0.00 sec)
+
+mysql> delete from student_table where rno=16;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    4 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+15 rows in set (0.00 sec)
+
+mysql> update student_table set sem=1 where rno=10;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+15 rows in set (0.00 sec)
+
+mysql> select name from student_table;
++----------+
+| name     |
++----------+
+| Anshima  |
+| Kanika   |
+| Mayank   |
+| Abhishek |
+| Priyank  |
+| Anushka  |
+| Era      |
+| Palak    |
+| Kashish  |
+| Purnima  |
+| Anusha   |
+| Rahul    |
+| Mahima   |
+| Garima   |
+| Akshat   |
++----------+
+15 rows in set (0.00 sec)
+
+mysql> select rno,name from student_table;
++-----+----------+
+| rno | name     |
++-----+----------+
+|   1 | Anshima  |
+|   2 | Kanika   |
+|   3 | Mayank   |
+|   4 | Abhishek |
+|   5 | Priyank  |
+|   6 | Anushka  |
+|   7 | Era      |
+|   8 | Palak    |
+|   9 | Kashish  |
+|  10 | Purnima  |
+|  11 | Anusha   |
+|  12 | Rahul    |
+|  13 | Mahima   |
+|  14 | Garima   |
+|  15 | Akshat   |
++-----+----------+
+15 rows in set (0.00 sec)
+
+mysql> alter student_table modify column name varchar(50) NOT NULL;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student_table modify column name varchar(50) NOT NULL' at line 1
+mysql> alter table student_table modify column name varchar(50) NOT NULL;
+Query OK, 15 rows affected (0.19 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+15 rows in set (0.00 sec)
+
+mysql> desc student_table;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| rno   | int(11)     | NO   | PRI | NULL    |       |
+| name  | varchar(50) | NO   |     | NULL    |       |
+| sem   | int(11)     | YES  |     | NULL    |       |
+| batch | char(1)     | YES  |     | NULL    |       |
+| marks | int(11)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_table where name like 'A%';
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   6 | Anushka  |    4 | A     |    84 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+5 rows in set (0.12 sec)
+
+mysql> select * from student_table where name like 'a%';
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   6 | Anushka  |    4 | A     |    84 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student_table where name like '_a%';
++-----+---------+------+-------+-------+
+| rno | name    | sem  | batch | marks |
++-----+---------+------+-------+-------+
+|   2 | Kanika  |    4 | B     |    95 |
+|   3 | Mayank  |    4 | A     |    94 |
+|   8 | Palak   |    4 | A     |    95 |
+|   9 | Kashish |    4 | A     |    75 |
+|  12 | Rahul   |    4 | A     |    85 |
+|  13 | Mahima  |    4 | B     |    86 |
+|  14 | Garima  |    4 | A     |    55 |
++-----+---------+------+-------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student_table where name like '__a%';
++-----+------+------+-------+-------+
+| rno | name | sem  | batch | marks |
++-----+------+------+-------+-------+
+|   7 | Era  |    4 | B     |    86 |
++-----+------+------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_table where name like '__n%';
++-----+--------+------+-------+-------+
+| rno | name   | sem  | batch | marks |
++-----+--------+------+-------+-------+
+|   2 | Kanika |    4 | B     |    95 |
++-----+--------+------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from student_table where name like '__s%';
++-----+---------+------+-------+-------+
+| rno | name    | sem  | batch | marks |
++-----+---------+------+-------+-------+
+|   1 | Anshima |    4 | A     |    98 |
+|   9 | Kashish |    4 | A     |    75 |
+|  15 | Akshat  |    4 | B     |    95 |
++-----+---------+------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student_table where name sem=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sem=4' at line 1
+mysql> select * from student_table where sem=4;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
++-----+----------+------+-------+-------+
+14 rows in set (0.00 sec)
+
+mysql> alter table student_table modify column rno int autoincreament;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'autoincreament' at line 1
+mysql> alter table student_table modify column rno int autoincrement;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'autoincrement' at line 1
+mysql> alter table student_table modify column rno int auto_increment;
+Query OK, 15 rows affected (0.25 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anjali',4,'B',97);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    98 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
+|  16 | Anjali   |    4 | B     |    97 |
++-----+----------+------+-------+-------+
+16 rows in set (0.00 sec)
+
+mysql> delete from student_table where rno=5;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
+|  16 | Anjali   |    4 | B     |    97 |
++-----+----------+------+-------+-------+
+15 rows in set (0.00 sec)
+
+mysql> insert into student_table(rno,name,sem,batch,marks) values(5,'Priyank',4,'B',97);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    97 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
+|  16 | Anjali   |    4 | B     |    97 |
++-----+----------+------+-------+-------+
+16 rows in set (0.00 sec)
+
+mysql> alter table student_table age int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'age int' at line 1
+mysql> alter table student_table add age int;
+Query OK, 16 rows affected (0.19 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+------+
+| rno | name     | sem  | batch | marks | age  |
++-----+----------+------+-------+-------+------+
+|   1 | Anshima  |    4 | A     |    98 | NULL |
+|   2 | Kanika   |    4 | B     |    95 | NULL |
+|   3 | Mayank   |    4 | A     |    94 | NULL |
+|   4 | Abhishek |    4 | A     |    96 | NULL |
+|   5 | Priyank  |    4 | B     |    97 | NULL |
+|   6 | Anushka  |    4 | A     |    84 | NULL |
+|   7 | Era      |    4 | B     |    86 | NULL |
+|   8 | Palak    |    4 | A     |    95 | NULL |
+|   9 | Kashish  |    4 | A     |    75 | NULL |
+|  10 | Purnima  |    1 | A     |    76 | NULL |
+|  11 | Anusha   |    4 | B     |    65 | NULL |
+|  12 | Rahul    |    4 | A     |    85 | NULL |
+|  13 | Mahima   |    4 | B     |    86 | NULL |
+|  14 | Garima   |    4 | A     |    55 | NULL |
+|  15 | Akshat   |    4 | B     |    95 | NULL |
+|  16 | Anjali   |    4 | B     |    97 | NULL |
++-----+----------+------+-------+-------+------+
+16 rows in set (0.00 sec)
+
+mysql> alter table student_table auto_increment=100;
+Query OK, 16 rows affected (0.19 sec)
+Records: 16  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+------+
+| rno | name     | sem  | batch | marks | age  |
++-----+----------+------+-------+-------+------+
+|   1 | Anshima  |    4 | A     |    98 | NULL |
+|   2 | Kanika   |    4 | B     |    95 | NULL |
+|   3 | Mayank   |    4 | A     |    94 | NULL |
+|   4 | Abhishek |    4 | A     |    96 | NULL |
+|   5 | Priyank  |    4 | B     |    97 | NULL |
+|   6 | Anushka  |    4 | A     |    84 | NULL |
+|   7 | Era      |    4 | B     |    86 | NULL |
+|   8 | Palak    |    4 | A     |    95 | NULL |
+|   9 | Kashish  |    4 | A     |    75 | NULL |
+|  10 | Purnima  |    1 | A     |    76 | NULL |
+|  11 | Anusha   |    4 | B     |    65 | NULL |
+|  12 | Rahul    |    4 | A     |    85 | NULL |
+|  13 | Mahima   |    4 | B     |    86 | NULL |
+|  14 | Garima   |    4 | A     |    55 | NULL |
+|  15 | Akshat   |    4 | B     |    95 | NULL |
+|  16 | Anjali   |    4 | B     |    97 | NULL |
++-----+----------+------+-------+-------+------+
+16 rows in set (0.00 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anurag',4,'B',97);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+------+
+| rno | name     | sem  | batch | marks | age  |
++-----+----------+------+-------+-------+------+
+|   1 | Anshima  |    4 | A     |    98 | NULL |
+|   2 | Kanika   |    4 | B     |    95 | NULL |
+|   3 | Mayank   |    4 | A     |    94 | NULL |
+|   4 | Abhishek |    4 | A     |    96 | NULL |
+|   5 | Priyank  |    4 | B     |    97 | NULL |
+|   6 | Anushka  |    4 | A     |    84 | NULL |
+|   7 | Era      |    4 | B     |    86 | NULL |
+|   8 | Palak    |    4 | A     |    95 | NULL |
+|   9 | Kashish  |    4 | A     |    75 | NULL |
+|  10 | Purnima  |    1 | A     |    76 | NULL |
+|  11 | Anusha   |    4 | B     |    65 | NULL |
+|  12 | Rahul    |    4 | A     |    85 | NULL |
+|  13 | Mahima   |    4 | B     |    86 | NULL |
+|  14 | Garima   |    4 | A     |    55 | NULL |
+|  15 | Akshat   |    4 | B     |    95 | NULL |
+|  16 | Anjali   |    4 | B     |    97 | NULL |
+| 100 | Anurag   |    4 | B     |    97 | NULL |
++-----+----------+------+-------+-------+------+
+17 rows in set (0.00 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Ansh',4,'B',97);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anshu',4,'B',97);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Kuku',4,'B',97);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Abhii',4,'B',97);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+------+
+| rno | name     | sem  | batch | marks | age  |
++-----+----------+------+-------+-------+------+
+|   1 | Anshima  |    4 | A     |    98 | NULL |
+|   2 | Kanika   |    4 | B     |    95 | NULL |
+|   3 | Mayank   |    4 | A     |    94 | NULL |
+|   4 | Abhishek |    4 | A     |    96 | NULL |
+|   5 | Priyank  |    4 | B     |    97 | NULL |
+|   6 | Anushka  |    4 | A     |    84 | NULL |
+|   7 | Era      |    4 | B     |    86 | NULL |
+|   8 | Palak    |    4 | A     |    95 | NULL |
+|   9 | Kashish  |    4 | A     |    75 | NULL |
+|  10 | Purnima  |    1 | A     |    76 | NULL |
+|  11 | Anusha   |    4 | B     |    65 | NULL |
+|  12 | Rahul    |    4 | A     |    85 | NULL |
+|  13 | Mahima   |    4 | B     |    86 | NULL |
+|  14 | Garima   |    4 | A     |    55 | NULL |
+|  15 | Akshat   |    4 | B     |    95 | NULL |
+|  16 | Anjali   |    4 | B     |    97 | NULL |
+| 100 | Anurag   |    4 | B     |    97 | NULL |
+| 101 | Ansh     |    4 | B     |    97 | NULL |
+| 102 | Anshu    |    4 | B     |    97 | NULL |
+| 103 | Kuku     |    4 | B     |    97 | NULL |
+| 104 | Abhii    |    4 | B     |    97 | NULL |
++-----+----------+------+-------+-------+------+
+21 rows in set (0.00 sec)
+
+mysql> select * from student_table where rno between 100 and 104;
++-----+--------+------+-------+-------+------+
+| rno | name   | sem  | batch | marks | age  |
++-----+--------+------+-------+-------+------+
+| 100 | Anurag |    4 | B     |    97 | NULL |
+| 101 | Ansh   |    4 | B     |    97 | NULL |
+| 102 | Anshu  |    4 | B     |    97 | NULL |
+| 103 | Kuku   |    4 | B     |    97 | NULL |
+| 104 | Abhii  |    4 | B     |    97 | NULL |
++-----+--------+------+-------+-------+------+
+5 rows in set (0.08 sec)
+
+mysql> alter table student_table drop column age;
+Query OK, 21 rows affected (0.16 sec)
+Records: 21  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_table;
++-----+----------+------+-------+-------+
+| rno | name     | sem  | batch | marks |
++-----+----------+------+-------+-------+
+|   1 | Anshima  |    4 | A     |    98 |
+|   2 | Kanika   |    4 | B     |    95 |
+|   3 | Mayank   |    4 | A     |    94 |
+|   4 | Abhishek |    4 | A     |    96 |
+|   5 | Priyank  |    4 | B     |    97 |
+|   6 | Anushka  |    4 | A     |    84 |
+|   7 | Era      |    4 | B     |    86 |
+|   8 | Palak    |    4 | A     |    95 |
+|   9 | Kashish  |    4 | A     |    75 |
+|  10 | Purnima  |    1 | A     |    76 |
+|  11 | Anusha   |    4 | B     |    65 |
+|  12 | Rahul    |    4 | A     |    85 |
+|  13 | Mahima   |    4 | B     |    86 |
+|  14 | Garima   |    4 | A     |    55 |
+|  15 | Akshat   |    4 | B     |    95 |
+|  16 | Anjali   |    4 | B     |    97 |
+| 100 | Anurag   |    4 | B     |    97 |
+| 101 | Ansh     |    4 | B     |    97 |
+| 102 | Anshu    |    4 | B     |    97 |
+| 103 | Kuku     |    4 | B     |    97 |
+| 104 | Abhii    |    4 | B     |    97 |
++-----+----------+------+-------+-------+
+21 rows in set (0.00 sec)
+
+mysql> truncate student_table;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select * from student_table;
+Empty set (0.00 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anshu',4,'B',97);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_table;
++-----+-------+------+-------+-------+
+| rno | name  | sem  | batch | marks |
++-----+-------+------+-------+-------+
+|   1 | Anshu |    4 | B     |    97 |
++-----+-------+------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anurag',4,'B',97);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into student_table(rno,name,sem,batch,marks) values(5,'Priyank',4,'B',97);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into student_table(name,sem,batch,marks) values('Anjali',4,'B',97);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from student_table;
++-----+---------+------+-------+-------+
+| rno | name    | sem  | batch | marks |
++-----+---------+------+-------+-------+
+|   1 | Anshu   |    4 | B     |    97 |
+|   2 | Anurag  |    4 | B     |    97 |
+|   5 | Priyank |    4 | B     |    97 |
+|   6 | Anjali  |    4 | B     |    97 |
++-----+---------+------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
