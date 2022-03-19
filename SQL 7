@@ -1,0 +1,357 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| employee           |
+| mtech              |
+| mysql              |
+| performance_schema |
+| practice           |
+| rishika1           |
+| rishika2           |
+| student            |
+| test               |
++--------------------+
+11 rows in set (0.04 sec)
+
+mysql> use rishika2;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_rishika2 |
++--------------------+
+| client             |
+| order_details      |
+| product            |
+| salesman           |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from client;
++-----------+---------------+------------+----------+--------+---------+---------+
+| client_id | client_name   | addr       | city     | pin    | state   | bal_due |
++-----------+---------------+------------+----------+--------+---------+---------+
+| cn01001   | Alak roy      | b.d. para  | Amarpur  | 799101 | Tripura |   390.9 |
+| cn01002   | Suman roy     | puk para   | Agartala | 799102 | Tripura |  2390.9 |
+| cn01003   | Moytree nayak | pachmile   | Tezpur   | 799152 | Assam   |  9990.9 |
+| cn01004   | Priya Das     | chorapara  | Kamalpur | 799301 | Tripura |  1390.9 |
+| cn01005   | Mita mia      | Kamal para | Singur   | 799721 | Tripura |   190.9 |
+| cn01006   | Pulak roy     | bircity    | Sonitpur | 799141 | Assam   |   110.9 |
+| cn01007   | Munni Das     | nappam     | Sonitpur | 799152 | Assam   |   190.9 |
+| cn01008   | Kusum Roy     | City_dos   | Tezpur   | 799141 | Assam   |   110.9 |
+| cn01009   | Mina Das      | Pachmile   | Tezpur   | 799152 | Assam   |   190.9 |
+| cn01010   | Pauri Mia     | Pachmile   | Tezpur   | 799152 | Assam   |  2990.9 |
+| cn01011   | Manali Das    | Satmile    | Tezpur   | 799154 | Assam   |  3990.9 |
++-----------+---------------+------------+----------+--------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from product;
++------------+---------------+-------------------+--------------+------------+---------+
+| product_id | product_name  | manufacturre_name | product_rate | sell_price | p_desc  |
++------------+---------------+-------------------+--------------+------------+---------+
+| p001       | Lux_soap      | Lux_international |        15.67 |      20.43 | soap    |
+| p002       | copy          | times_copy_org    |         14.8 |       16.4 | copy    |
+| p003       | mari biscuit  | marigold_org      |       2218.8 |     2220.4 | biscuit |
+| p004       | mitsubisi_pen | pen_international |      2015.67 |    2120.43 | pen     |
+| p005       | Learn_books   | book_world        |       5104.8 |     5116.4 | book    |
+| p006       | Tata steel    | tata_org          |       5118.8 |     5120.4 | tata    |
+| p007       | seaget hdd    | seaget_world      |       5104.8 |     5116.4 | HDD1034 |
+| p008       | dvd writer    | frontec_org       |       5118.8 |     5120.4 | DVDRW   |
++------------+---------------+-------------------+--------------+------------+---------+
+8 rows in set (0.00 sec)
+
+mysql> select * from salesman;
++-------------+---------------+-------------+------------+--------+-----------+--------+
+| salesman_id | salesman_name | addr        | city       | pin    | state     | salary |
++-------------+---------------+-------------+------------+--------+-----------+--------+
+| s001        | Rohan Das     | nappam      | Tezpur     |  79970 | Assam     |   8000 |
+| s002        | Rohan Das     | nappam      | Tezpur     | 799170 | Assam     |   8000 |
+| s003        | Smita Das     | nirjuli     | itanagar   | 799701 | Arunachal |   9000 |
+| s004        | Kabir Bora    | nappam      | Tezpur     | 799703 | Assam     |   8500 |
+| s005        | Neha Singh    | Borbota     | Sonitpur   | 795950 | Assam     |   9600 |
+| s006        | Priya Agarwal | Gandhi Road | 32district | 799750 | delhi     |   9900 |
+| s007        | Ashok Paul    | fimlcity    | Munnabari  | 799740 | Mumbai    |   8900 |
++-------------+---------------+-------------+------------+--------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from order_details;
++----------+------------+-----------+-------------+----------+---------------+--------+----------+-------------+
+| order_no | order_date | client_id | salesman_id | bill_pay | delivery_date | p_rate | quantity | cancel_date |
++----------+------------+-----------+-------------+----------+---------------+--------+----------+-------------+
+| on01001  | 2008-08-01 | cn01001   | s001        | yes      | 2008-08-20    | 2220.4 |       50 | 0000-00-00  |
+| on01002  | 2008-08-12 | cn01004   | s001        | yes      | 2008-08-23    | 2220.4 |       15 | 0000-00-00  |
+| on01003  | 2008-08-12 | cn01005   | s003        | yes      | 2008-08-26    | 2220.4 |       10 | 0000-00-00  |
+| on01004  | 2008-08-13 | cn01004   | s001        | yes      | 2008-08-20    | 2220.4 |       15 | 0000-00-00  |
+| on01005  | 2008-08-14 | cn01002   | s002        | no       | 2008-08-30    | 2220.4 |       52 | 2008-08-28  |
+| on01006  | 2008-08-15 | cn01001   | s001        | yes      | 2008-08-31    | 2220.4 |       53 | 0000-00-00  |
+| on01007  | 2008-08-16 | cn01003   | s004        | yes      | 2008-08-28    | 2220.4 |       54 | 0000-00-00  |
+| on01008  | 2008-02-01 | cn01004   | s003        | no       | 2008-08-28    | 8220.4 |       54 | 2008-03-18  |
++----------+------------+-----------+-------------+----------+---------------+--------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> desc order_details;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| order_no      | varchar(10) | NO   | PRI | NULL    |       |
+| order_date    | date        | YES  |     | NULL    |       |
+| client_id     | varchar(10) | YES  | MUL | NULL    |       |
+| salesman_id   | varchar(10) | YES  | MUL | NULL    |       |
+| bill_pay      | char(5)     | YES  |     | NULL    |       |
+| delivery_date | date        | YES  |     | NULL    |       |
+| p_rate        | double      | YES  |     | NULL    |       |
+| quantity      | int(11)     | YES  |     | NULL    |       |
+| cancel_date   | date        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+9 rows in set (0.01 sec)
+
+mysql> select client_name, city from client;
++---------------+----------+
+| client_name   | city     |
++---------------+----------+
+| Alak roy      | Amarpur  |
+| Suman roy     | Agartala |
+| Moytree nayak | Tezpur   |
+| Priya Das     | Kamalpur |
+| Mita mia      | Singur   |
+| Pulak roy     | Sonitpur |
+| Munni Das     | Sonitpur |
+| Kusum Roy     | Tezpur   |
+| Mina Das      | Tezpur   |
+| Pauri Mia     | Tezpur   |
+| Manali Das    | Tezpur   |
++---------------+----------+
+11 rows in set (0.00 sec)
+
+mysql> select client_name, city from clien;
+ERROR 1146 (42S02): Table 'rishika2.clien' doesn't exist
+mysql> select product_name from product;
++---------------+
+| product_name  |
++---------------+
+| Lux_soap      |
+| copy          |
+| mari biscuit  |
+| mitsubisi_pen |
+| Learn_books   |
+| Tata steel    |
+| seaget hdd    |
+| dvd writer    |
++---------------+
+8 rows in set (0.00 sec)
+
+mysql> select client_name from client where client_name like '_a%';
++-------------+
+| client_name |
++-------------+
+| Pauri Mia   |
+| Manali Das  |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from client where city='Tezpur';
++-----------+---------------+----------+--------+--------+-------+---------+
+| client_id | client_name   | addr     | city   | pin    | state | bal_due |
++-----------+---------------+----------+--------+--------+-------+---------+
+| cn01003   | Moytree nayak | pachmile | Tezpur | 799152 | Assam |  9990.9 |
+| cn01008   | Kusum Roy     | City_dos | Tezpur | 799141 | Assam |   110.9 |
+| cn01009   | Mina Das      | Pachmile | Tezpur | 799152 | Assam |   190.9 |
+| cn01010   | Pauri Mia     | Pachmile | Tezpur | 799152 | Assam |  2990.9 |
+| cn01011   | Manali Das    | Satmile  | Tezpur | 799154 | Assam |  3990.9 |
++-----------+---------------+----------+--------+--------+-------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from client where sell_price>2000 and sell_price<=5000;
+ERROR 1054 (42S22): Unknown column 'sell_price' in 'where clause'
+mysql> select * from product where sell_price>2000 and sell_price<=5000;
++------------+---------------+-------------------+--------------+------------+---------+
+| product_id | product_name  | manufacturre_name | product_rate | sell_price | p_desc  |
++------------+---------------+-------------------+--------------+------------+---------+
+| p003       | mari biscuit  | marigold_org      |       2218.8 |     2220.4 | biscuit |
+| p004       | mitsubisi_pen | pen_international |      2015.67 |    2120.43 | pen     |
++------------+---------------+-------------------+--------------+------------+---------+
+2 rows in set (0.06 sec)
+
+mysql> alter table product add column new_price int;
+Query OK, 8 rows affected (1.57 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> alter table order_details change p_rate to new_p_rate double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to new_p_rate double' at line 1
+mysql> alter table order_details change column p_rate to new_p_rate double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to new_p_rate double' at line 1
+mysql> alter table order_details change column p_rate to new_p_rate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to new_p_rate' at line 1
+mysql> alter table order_details change column p_rate to new_p_rate double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to new_p_rate double' at line 1
+mysql> alter table order_details change p_rate to new_p_rate double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to new_p_rate double' at line 1
+mysql> alter table order_details rename column p_rate to new_p_rate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column p_rate to new_p_rate' at line 1
+mysql> alter table order_details rename column p_rate to new_p_rate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column p_rate to new_p_rate' at line 1
+mysql> alter table order_details rename column "p_rate" to "new_p_rate";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column "p_rate" to "new_p_rate"' at line 1
+mysql> ALTER TABLE order_details RENAME COLUMN p_rate To new_p_rate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN p_rate To new_p_rate' at line 1
+mysql> ALTER TABLE order_details RENAME COLUMN p_rate To new_p_rate double;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN p_rate To new_p_rate double' at line 1
+mysql> alter table order_details change p_rate new_p_rate double;
+Query OK, 8 rows affected (0.41 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select p_desc from product order by p_rate desc;
+ERROR 1054 (42S22): Unknown column 'p_rate' in 'order clause'
+mysql> select p_desc from product order by p_desc desc;
++---------+
+| p_desc  |
++---------+
+| tata    |
+| soap    |
+| pen     |
+| HDD1034 |
+| DVDRW   |
+| copy    |
+| book    |
+| biscuit |
++---------+
+8 rows in set (0.05 sec)
+
+mysql> select order_no,order_date from order_details;
++----------+------------+
+| order_no | order_date |
++----------+------------+
+| on01001  | 2008-08-01 |
+| on01002  | 2008-08-12 |
+| on01003  | 2008-08-12 |
+| on01004  | 2008-08-13 |
+| on01005  | 2008-08-14 |
+| on01006  | 2008-08-15 |
+| on01007  | 2008-08-16 |
+| on01008  | 2008-02-01 |
++----------+------------+
+8 rows in set (0.04 sec)
+
+mysql> update order_details set delivery_date='2008-08-16' where order_no='on01008';
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select client_name ,city,state from client where state!='Assam';
++-------------+----------+---------+
+| client_name | city     | state   |
++-------------+----------+---------+
+| Alak roy    | Amarpur  | Tripura |
+| Suman roy   | Agartala | Tripura |
+| Priya Das   | Kamalpur | Tripura |
+| Mita mia    | Singur   | Tripura |
++-------------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select * from order_details where cancel_date is not null;
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| order_no | order_date | client_id | salesman_id | bill_pay | delivery_date | new_p_rate | quantity | cancel_date |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| on01001  | 2008-08-01 | cn01001   | s001        | yes      | 2008-08-20    |     2220.4 |       50 | 0000-00-00  |
+| on01002  | 2008-08-12 | cn01004   | s001        | yes      | 2008-08-23    |     2220.4 |       15 | 0000-00-00  |
+| on01003  | 2008-08-12 | cn01005   | s003        | yes      | 2008-08-26    |     2220.4 |       10 | 0000-00-00  |
+| on01004  | 2008-08-13 | cn01004   | s001        | yes      | 2008-08-20    |     2220.4 |       15 | 0000-00-00  |
+| on01005  | 2008-08-14 | cn01002   | s002        | no       | 2008-08-30    |     2220.4 |       52 | 2008-08-28  |
+| on01006  | 2008-08-15 | cn01001   | s001        | yes      | 2008-08-31    |     2220.4 |       53 | 0000-00-00  |
+| on01007  | 2008-08-16 | cn01003   | s004        | yes      | 2008-08-28    |     2220.4 |       54 | 0000-00-00  |
+| on01008  | 2008-02-01 | cn01004   | s003        | no       | 2008-08-16    |     8220.4 |       54 | 2008-03-18  |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from order_details where cancel_date is not '0000-00-00';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''0000-00-00'' at line 1
+mysql> select * from order_details where cancel_date!='0000-00-00';
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| order_no | order_date | client_id | salesman_id | bill_pay | delivery_date | new_p_rate | quantity | cancel_date |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| on01005  | 2008-08-14 | cn01002   | s002        | no       | 2008-08-30    |     2220.4 |       52 | 2008-08-28  |
+| on01008  | 2008-02-01 | cn01004   | s003        | no       | 2008-08-16    |     8220.4 |       54 | 2008-03-18  |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+2 rows in set (0.04 sec)
+
+mysql> update client set bal_due=1200 where client_id='cn01003';
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++------------+---------------+-------------------+--------------+------------+---------+-----------+
+| product_id | product_name  | manufacturre_name | product_rate | sell_price | p_desc  | new_price |
++------------+---------------+-------------------+--------------+------------+---------+-----------+
+| p001       | Lux_soap      | Lux_international |        15.67 |      20.43 | soap    |      NULL |
+| p002       | copy          | times_copy_org    |         14.8 |       16.4 | copy    |      NULL |
+| p003       | mari biscuit  | marigold_org      |       2218.8 |     2220.4 | biscuit |      NULL |
+| p004       | mitsubisi_pen | pen_international |      2015.67 |    2120.43 | pen     |      NULL |
+| p005       | Learn_books   | book_world        |       5104.8 |     5116.4 | book    |      NULL |
+| p006       | Tata steel    | tata_org          |       5118.8 |     5120.4 | tata    |      NULL |
+| p007       | seaget hdd    | seaget_world      |       5104.8 |     5116.4 | HDD1034 |      NULL |
+| p008       | dvd writer    | frontec_org       |       5118.8 |     5120.4 | DVDRW   |      NULL |
++------------+---------------+-------------------+--------------+------------+---------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from client;
++-----------+---------------+------------+----------+--------+---------+---------+
+| client_id | client_name   | addr       | city     | pin    | state   | bal_due |
++-----------+---------------+------------+----------+--------+---------+---------+
+| cn01001   | Alak roy      | b.d. para  | Amarpur  | 799101 | Tripura |   390.9 |
+| cn01002   | Suman roy     | puk para   | Agartala | 799102 | Tripura |  2390.9 |
+| cn01003   | Moytree nayak | pachmile   | Tezpur   | 799152 | Assam   |    1200 |
+| cn01004   | Priya Das     | chorapara  | Kamalpur | 799301 | Tripura |  1390.9 |
+| cn01005   | Mita mia      | Kamal para | Singur   | 799721 | Tripura |   190.9 |
+| cn01006   | Pulak roy     | bircity    | Sonitpur | 799141 | Assam   |   110.9 |
+| cn01007   | Munni Das     | nappam     | Sonitpur | 799152 | Assam   |   190.9 |
+| cn01008   | Kusum Roy     | City_dos   | Tezpur   | 799141 | Assam   |   110.9 |
+| cn01009   | Mina Das      | Pachmile   | Tezpur   | 799152 | Assam   |   190.9 |
+| cn01010   | Pauri Mia     | Pachmile   | Tezpur   | 799152 | Assam   |  2990.9 |
+| cn01011   | Manali Das    | Satmile    | Tezpur   | 799154 | Assam   |  3990.9 |
++-----------+---------------+------------+----------+--------+---------+---------+
+11 rows in set (0.00 sec)
+
+mysql> select * from salesman;
++-------------+---------------+-------------+------------+--------+-----------+--------+
+| salesman_id | salesman_name | addr        | city       | pin    | state     | salary |
++-------------+---------------+-------------+------------+--------+-----------+--------+
+| s001        | Rohan Das     | nappam      | Tezpur     |  79970 | Assam     |   8000 |
+| s002        | Rohan Das     | nappam      | Tezpur     | 799170 | Assam     |   8000 |
+| s003        | Smita Das     | nirjuli     | itanagar   | 799701 | Arunachal |   9000 |
+| s004        | Kabir Bora    | nappam      | Tezpur     | 799703 | Assam     |   8500 |
+| s005        | Neha Singh    | Borbota     | Sonitpur   | 795950 | Assam     |   9600 |
+| s006        | Priya Agarwal | Gandhi Road | 32district | 799750 | delhi     |   9900 |
+| s007        | Ashok Paul    | fimlcity    | Munnabari  | 799740 | Mumbai    |   8900 |
++-------------+---------------+-------------+------------+--------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from order_details;
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| order_no | order_date | client_id | salesman_id | bill_pay | delivery_date | new_p_rate | quantity | cancel_date |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+| on01001  | 2008-08-01 | cn01001   | s001        | yes      | 2008-08-20    |     2220.4 |       50 | 0000-00-00  |
+| on01002  | 2008-08-12 | cn01004   | s001        | yes      | 2008-08-23    |     2220.4 |       15 | 0000-00-00  |
+| on01003  | 2008-08-12 | cn01005   | s003        | yes      | 2008-08-26    |     2220.4 |       10 | 0000-00-00  |
+| on01004  | 2008-08-13 | cn01004   | s001        | yes      | 2008-08-20    |     2220.4 |       15 | 0000-00-00  |
+| on01005  | 2008-08-14 | cn01002   | s002        | no       | 2008-08-30    |     2220.4 |       52 | 2008-08-28  |
+| on01006  | 2008-08-15 | cn01001   | s001        | yes      | 2008-08-31    |     2220.4 |       53 | 0000-00-00  |
+| on01007  | 2008-08-16 | cn01003   | s004        | yes      | 2008-08-28    |     2220.4 |       54 | 0000-00-00  |
+| on01008  | 2008-02-01 | cn01004   | s003        | no       | 2008-08-16    |     8220.4 |       54 | 2008-03-18  |
++----------+------------+-----------+-------------+----------+---------------+------------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql>
