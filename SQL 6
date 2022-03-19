@@ -1,0 +1,191 @@
+create database rishika1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use rishika1;
+Database changed
+mysql> create table Empl(Empno varchar(5) primary key not null,Emp_name varchar(10) not null,Dept varchar(10), salary int ,DOJ date,Branch varchar(10));
+Query OK, 0 rows affected (0.46 sec)
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use rishika1;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_rishika1 |
++--------------------+
+| empl               |
++--------------------+
+1 row in set (0.04 sec)
+
+mysql> insert into Empl values ('E101','Amit','Production',45000,'12-03-2000','Banglore');
+ERROR 1292 (22007): Incorrect date value: '12-03-2000' for column 'DOJ' at row 1
+mysql> insert into Empl values ('E101','Amit','Production',45000,12-03-2000,'Banglore');
+ERROR 1292 (22007): Incorrect date value: '-1991' for column 'DOJ' at row 1
+mysql> insert into Empl values ('E101','Amit','Production',45000,'2000-03-12','Banglore');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Empl values ('E102','Amit','HR',70000,'2002-07-03','Banglore');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Empl values ('E103','Sunita','Manager',120000,'2001-01-11','Mysore');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Empl values ('E104','Sunita','IT',67000,'2001-08-01','Mysore');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Empl values ('E105','Mahesh','Civil',145000,'2003-09-20','Mumbai');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Empl;
++-------+----------+------------+--------+------------+----------+
+| Empno | Emp_name | Dept       | salary | DOJ        | Branch   |
++-------+----------+------------+--------+------------+----------+
+| E101  | Amit     | Production |  45000 | 2000-03-12 | Banglore |
+| E102  | Amit     | HR         |  70000 | 2002-07-03 | Banglore |
+| E103  | Sunita   | Manager    | 120000 | 2001-01-11 | Mysore   |
+| E104  | Sunita   | IT         |  67000 | 2001-08-01 | Mysore   |
+| E105  | Mahesh   | Civil      | 145000 | 2003-09-20 | Mumbai   |
++-------+----------+------------+--------+------------+----------+
+5 rows in set (0.01 sec)
+
+mysql> select Empno,salary from Empl;
++-------+--------+
+| Empno | salary |
++-------+--------+
+| E101  |  45000 |
+| E102  |  70000 |
+| E103  | 120000 |
+| E104  |  67000 |
+| E105  | 145000 |
++-------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select avg(salary) from salary;
+ERROR 1146 (42S02): Table 'rishika1.salary' doesn't exist
+mysql> select avg(salary) from Empl;
++-------------+
+| avg(salary) |
++-------------+
+|  89400.0000 |
++-------------+
+1 row in set (0.06 sec)
+
+mysql> select floor(avg(salary)) from Empl;
++--------------------+
+| floor(avg(salary)) |
++--------------------+
+|              89400 |
++--------------------+
+1 row in set (0.09 sec)
+
+mysql> select ceil(avg(salary)) from Empl;
++-------------------+
+| ceil(avg(salary)) |
++-------------------+
+|             89400 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(Empno) from Empl;
++--------------+
+| count(Empno) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.05 sec)
+
+mysql> select count(distinct Empno) from Empl;
++-----------------------+
+| count(distinct Empno) |
++-----------------------+
+|                     5 |
++-----------------------+
+1 row in set (0.07 sec)
+
+mysql> select count(distinct Emp_name) from Empl;
++--------------------------+
+| count(distinct Emp_name) |
++--------------------------+
+|                        3 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Emp_name from Empl order by Emp_name desc;
++----------+
+| Emp_name |
++----------+
+| Sunita   |
+| Sunita   |
+| Mahesh   |
+| Amit     |
+| Amit     |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Empl where Emp_name='Amit' and salary>50000;
++-------+----------+------+--------+------------+----------+
+| Empno | Emp_name | Dept | salary | DOJ        | Branch   |
++-------+----------+------+--------+------------+----------+
+| E102  | Amit     | HR   |  70000 | 2002-07-03 | Banglore |
++-------+----------+------+--------+------------+----------+
+1 row in set (0.05 sec)
+
+mysql> select * from Empl;
++-------+----------+------------+--------+------------+----------+
+| Empno | Emp_name | Dept       | salary | DOJ        | Branch   |
++-------+----------+------------+--------+------------+----------+
+| E101  | Amit     | Production |  45000 | 2000-03-12 | Banglore |
+| E102  | Amit     | HR         |  70000 | 2002-07-03 | Banglore |
+| E103  | Sunita   | Manager    | 120000 | 2001-01-11 | Mysore   |
+| E104  | Sunita   | IT         |  67000 | 2001-08-01 | Mysore   |
+| E105  | Mahesh   | Civil      | 145000 | 2003-09-20 | Mumbai   |
++-------+----------+------------+--------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> select Emp_name,sum(salary) from Empl group by Emp_name having sum(salary)>120000;
++----------+-------------+
+| Emp_name | sum(salary) |
++----------+-------------+
+| Mahesh   |      145000 |
+| Sunita   |      187000 |
++----------+-------------+
+2 rows in set (0.09 sec)
+
+mysql> select Emp_name,count(Emp_name),sum(salary) from Empl group by Emp_name;
++----------+-----------------+-------------+
+| Emp_name | count(Emp_name) | sum(salary) |
++----------+-----------------+-------------+
+| Amit     |               2 |      115000 |
+| Mahesh   |               1 |      145000 |
+| Sunita   |               2 |      187000 |
++----------+-----------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select date_format(DOJ,'%y-%b-%d');
+ERROR 1054 (42S22): Unknown column 'DOJ' in 'field list'
+mysql> select date_format(DOJ,'%Y-%b-%d');
+ERROR 1054 (42S22): Unknown column 'DOJ' in 'field list'
+mysql> select date_format(DOJ,'%Y-%b-%d') from Empl;
++-----------------------------+
+| date_format(DOJ,'%Y-%b-%d') |
++-----------------------------+
+| 2000-Mar-12                 |
+| 2002-Jul-03                 |
+| 2001-Jan-11                 |
+| 2001-Aug-01                 |
+| 2003-Sep-20                 |
++-----------------------------+
+5 rows in set (0.06 sec)
+
+mysql>
