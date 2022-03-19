@@ -1,0 +1,370 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| college            |
+| employee           |
+| mtech              |
+| mysql              |
+| performance_schema |
+| practice           |
+| student            |
+| test               |
++--------------------+
+9 rows in set (0.08 sec)
+
+mysql> use employee;
+Database changed
+mysql> select * from Loaction;
+ERROR 1146 (42S02): Table 'employee.loaction' doesn't exist
+mysql> select * from Location;
++-------------+----------------+
+| Location_ID | Regional_group |
++-------------+----------------+
+|         122 | NEW YORK       |
+|         123 | DALLAS         |
+|         124 | CHICAGO        |
+|         125 | BOSTON         |
++-------------+----------------+
+4 rows in set (0.23 sec)
+
+mysql> select * from Job;
++--------+-------------+
+| Job_ID | Function    |
++--------+-------------+
+|    667 | CLERK       |
+|    668 | STAFF       |
+|    669 | ANALYST     |
+|    670 | SALESPERSON |
+|    671 | MANAGER     |
+|    672 | PRESIDENT   |
++--------+-------------+
+6 rows in set (0.04 sec)
+
+mysql> select * from Department;
++---------------+------------+-------------+
+| Department_ID | Name       | Location_ID |
++---------------+------------+-------------+
+|            10 | ACCOUNTING |         122 |
+|            20 | RESEARCH   |         123 |
+|            30 | SALES      |         124 |
+|            40 | OPERATIONS |         125 |
++---------------+------------+-------------+
+4 rows in set (0.06 sec)
+
+mysql> select * from Employee;
++--------------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| ID_OF_THE_EMPLOYEE | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++--------------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|               7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|               7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|               7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|               7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|               7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|               7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
++--------------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select FIRST_NAME,LAST_NAME,SALARY,COMM FROM EMPLOYEE;
++------------+-----------+--------+------+
+| FIRST_NAME | LAST_NAME | SALARY | COMM |
++------------+-----------+--------+------+
+| ANSHIMA    | SHARMA    |    800 | NULL |
+| ABHISHEK   | SHARMA    |   1250 |  300 |
+| MAYANK     | RUNIJA    |   2850 | NULL |
+| KANIKA     | SHARMA    |   2750 | NULL |
+| MAHIMA     | MISHRA    |   2200 | NULL |
+| GARIMA     | JOSHI     |   1250 |  500 |
++------------+-----------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select EMPLOYEE_ID,LAST_NAME,Department_ID from employee;
+ERROR 1054 (42S22): Unknown column 'EMPLOYEE_ID' in 'field list'
+mysql> select ID_OF_THE_EMPLOYEE,LAST_NAME,Department_ID from employee;
++--------------------+-----------+---------------+
+| ID_OF_THE_EMPLOYEE | LAST_NAME | Department_ID |
++--------------------+-----------+---------------+
+|               7369 | SHARMA    |            10 |
+|               7499 | SHARMA    |            20 |
+|               7505 | RUNIJA    |            30 |
+|               7506 | SHARMA    |            40 |
+|               7507 | MISHRA    |            20 |
+|               7521 | JOSHI     |            10 |
++--------------------+-----------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee rename column ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID' at line 1
+mysql> alter table employee rename column ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID INT' at line 1
+mysql> alter table employee change ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO EMPLOYEE_ID int' at line 1
+mysql> alter table employee change column ID_OF_THE_EMPLOYEE TO EMPLOYEE_ID int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TO EMPLOYEE_ID int' at line 1
+mysql> alter table employee change column ID_OF_THE_EMPLOYEE to EMPLOYEE_ID int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to EMPLOYEE_ID int' at line 1
+mysql> alter table employee change column ID_OF_THE_EMPLOYEE to EMPLOYEE_ID;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to EMPLOYEE_ID' at line 1
+mysql> alter table employee change column ID_OF_THE_EMPLOYEE to EMPLOYEE_ID2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to EMPLOYEE_ID2' at line 1
+mysql> alter table employee change column "ID_OF_THE_EMPLOYEE" to "EMPLOYEE_ID";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"ID_OF_THE_EMPLOYEE" to "EMPLOYEE_ID"' at line 1
+mysql> alter table employee rename column "ID_OF_THE_EMPLOYEE" to "EMPLOYEE_ID";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column "ID_OF_THE_EMPLOYEE" to "EMPLOYEE_ID"' at line 1
+mysql> alter table employee change "ID_OF_THE_EMPLOYEE" "EMPLOYEE_ID" int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"ID_OF_THE_EMPLOYEE" "EMPLOYEE_ID" int' at line 1
+mysql> alter table employee change ID_OF_THE_EMPLOYEE EMPLOYEE_ID int;
+Query OK, 6 rows affected (0.27 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee rename column COMM to COMMISSION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column COMM to COMMISSION' at line 1
+mysql> alter table employee rename column 'COMM' to 'COMMISSION';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column 'COMM' to 'COMMISSION'' at line 1
+mysql> alter table employee rename column 'COMM' to 'COMMISSION' int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column 'COMM' to 'COMMISSION' int' at line 1
+mysql> alter table employee rename column COMM to COMMISSION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column COMM to COMMISSION' at line 1
+mysql> ALTER TABLE employee RENAME COLUMN COMM TO COMMISSION;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COLUMN COMM TO COMMISSION' at line 1
+mysql> select FIRST_NAME,LAST_NAME,SALARY FROM EMPLOYEE;
++------------+-----------+--------+
+| FIRST_NAME | LAST_NAME | SALARY |
++------------+-----------+--------+
+| ANSHIMA    | SHARMA    |    800 |
+| ABHISHEK   | SHARMA    |   1250 |
+| MAYANK     | RUNIJA    |   2850 |
+| KANIKA     | SHARMA    |   2750 |
+| MAHIMA     | MISHRA    |   2200 |
+| GARIMA     | JOSHI     |   1250 |
++------------+-----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID=10;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID=7369;
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79 |         122 |            10 |    667 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select FIRST_NAME,LAST_NAME from employee like 's%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'like 's%'' at line 1
+mysql> select * from employee where FIRST_NAME like 's%';
+Empty set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like 'a%';
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79 |         122 |            10 |    667 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80 |         123 |            20 |    668 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like '%ma';
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE   | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79  |         122 |            10 |    667 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80 |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80  |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like '%ab';
+Empty set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like 'ab%';
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80 |         123 |            20 |    668 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like 'a%%a';
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79 |         122 |            10 |    667 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like 'a%%k';
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80 |         123 |            20 |    668 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like '______a';
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79 |         122 |            10 |    667 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee where FIRST_NAME like '_____a';
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE   | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80  |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80 |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80  |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+------------+-------------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select EMPLOYEE_ID,FIRST_NAME,LAST_NAME order by asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select EMPLOYEE_ID,FIRST_NAME,LAST_NAME order by EMPLOYEE_ID asc;
+ERROR 1054 (42S22): Unknown column 'EMPLOYEE_ID' in 'field list'
+mysql> select EMPLOYEE_ID,FIRST_NAME,LAST_NAME from employee order by EMPLOYEE_ID asc;
++-------------+------------+-----------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME |
++-------------+------------+-----------+
+|        7369 | ANSHIMA    | SHARMA    |
+|        7499 | ABHISHEK   | SHARMA    |
+|        7505 | MAYANK     | RUNIJA    |
+|        7506 | KANIKA     | SHARMA    |
+|        7507 | MAHIMA     | MISHRA    |
+|        7521 | GARIMA     | JOSHI     |
++-------------+------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select EMPLOYEE_ID,FIRST_NAME,LAST_NAME from employee order by EMPLOYEE_ID desc;
++-------------+------------+-----------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME |
++-------------+------------+-----------+
+|        7521 | GARIMA     | JOSHI     |
+|        7507 | MAHIMA     | MISHRA    |
+|        7506 | KANIKA     | SHARMA    |
+|        7505 | MAYANK     | RUNIJA    |
+|        7499 | ABHISHEK   | SHARMA    |
+|        7369 | ANSHIMA    | SHARMA    |
++-------------+------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee where COMM=NULL;
+Empty set (0.02 sec)
+
+mysql> SELECT * FROM EMPLOYEE;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee where COMM is NULL;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+4 rows in set (0.04 sec)
+
+mysql> select * from employee where COMM is not NULL;
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE  | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80 |         123 |            20 |    668 |
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80 |         125 |            10 |    672 |
++-------------+-----------+------------+-------------+------------+--------+------+-----------+-------------+---------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select EMPLOYEE_ID,FIRST_NAME from employee order by salary asc;
++-------------+------------+
+| EMPLOYEE_ID | FIRST_NAME |
++-------------+------------+
+|        7369 | ANSHIMA    |
+|        7499 | ABHISHEK   |
+|        7521 | GARIMA     |
+|        7507 | MAHIMA     |
+|        7506 | KANIKA     |
+|        7505 | MAYANK     |
++-------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select EMPLOYEE_ID,FIRST_NAME from employee order by salary dedc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dedc' at line 1
+mysql> select EMPLOYEE_ID,FIRST_NAME from employee order by salary desc;
++-------------+------------+
+| EMPLOYEE_ID | FIRST_NAME |
++-------------+------------+
+|        7505 | MAYANK     |
+|        7506 | KANIKA     |
+|        7507 | MAHIMA     |
+|        7499 | ABHISHEK   |
+|        7521 | GARIMA     |
+|        7369 | ANSHIMA    |
++-------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from employee order by LAST_NAME asc,SALARY desc;
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+| EMPLOYEE_ID | LAST_NAME | FIRST_NAME | MIDDLE_NAME | MANAGER_ID | SALARY | COMM | HIREDATE    | Location_ID | Department_ID | Job_ID |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+|        7521 | JOSHI     | GARIMA     | D           |       7698 |   1250 |  500 | 22-FEB-80   |         125 |            10 |    672 |
+|        7507 | MISHRA    | MAHIMA     | D           |       7839 |   2200 | NULL | 10-JUNE-80  |         122 |            20 |    671 |
+|        7505 | RUNIJA    | MAYANK     | K           |       7839 |   2850 | NULL | 04-APRIL-80 |         124 |            30 |    669 |
+|        7506 | SHARMA    | KANIKA     | S           |       7839 |   2750 | NULL | 15-MAY-80   |         125 |            40 |    670 |
+|        7499 | SHARMA    | ABHISHEK   | J           |       7698 |   1250 |  300 | 20-FEB-80   |         123 |            20 |    668 |
+|        7369 | SHARMA    | ANSHIMA    | Q           |       7902 |    800 | NULL | 17-DEC-79   |         122 |            10 |    667 |
++-------------+-----------+------------+-------------+------------+--------+------+-------------+-------------+---------------+--------+
+6 rows in set (0.00 sec)
+
+mysql>
